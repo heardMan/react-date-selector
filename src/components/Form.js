@@ -12,7 +12,7 @@ const Form = () => {
         const month = currentDate.getMonth() + 1;
         const year = currentDate.getFullYear();
 
-        return setStartDate(`${year},${month},${day}`);
+        return setStartDate(`${year}/${month}/${day}`);
 
     }
 
@@ -23,7 +23,7 @@ const Form = () => {
         const month = currentDate.getMonth() + 1;
         const year = currentDate.getFullYear();
 
-        return setEndDate(`${year},${month},${day}`);
+        return setEndDate(`${year}/${month}/${day}`);
 
     }
 

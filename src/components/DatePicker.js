@@ -6,10 +6,14 @@ const DatePicker = props => {
     const [displayCalendar, setDisplayCalendar] = useState(false);
 
     const formattedDate = () => {
+        
         const currentDate = new Date(props.date);
+
+        console.log(currentDate);
         const day = currentDate.getDate();
         const month = currentDate.getMonth()+1;
         const year = currentDate.getFullYear();
+        
         
         return `${month}/${day}/${year}`;
     }
