@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from '../components/DatePicker.js';
 
 const Form = () => {
@@ -9,9 +9,9 @@ const Form = () => {
 
         const currentDate = new Date(rawDate);
         const day = currentDate.getDate();
-        const month = currentDate.getMonth()+1;
+        const month = currentDate.getMonth() + 1;
         const year = currentDate.getFullYear();
-        
+
         return setStartDate(`${year},${month},${day}`);
 
     }
@@ -20,9 +20,9 @@ const Form = () => {
 
         const currentDate = new Date(rawDate);
         const day = currentDate.getDate();
-        const month = currentDate.getMonth()+1;
+        const month = currentDate.getMonth() + 1;
         const year = currentDate.getFullYear();
-        
+
         return setEndDate(`${year},${month},${day}`);
 
     }
@@ -31,23 +31,36 @@ const Form = () => {
 
         formatStartDate((Date.now()));
         formatEndDate((Date.now()));
-        
+
     }, [])
 
-  return (
-      <div className='dateRange'>
-          <div>
-          <div>Start Date</div>
-          <DatePicker date={startDate} onChange={formatStartDate} />
-          </div>
-          <div>
-          <div>End Date</div>
-          <DatePicker date={endDate} onChange={formatEndDate} />
-          </div>
-          
-          
-      </div>
-  );
+    return (
+        <div className='form'>
+            <div className='form-field'>
+            <div className='title'>Name</div>
+                <input type='text' />
+            </div>
+            <div className='form-field'>
+            <div className='title'>Email</div>
+                <input type='email' />
+            </div>
+            <div className='form-field'>
+                <div className='startDate'>
+                    <div className='title'>Start Date</div>
+                    <DatePicker date={startDate} onChange={formatStartDate} />
+                </div>
+                <div className='endDate'>
+                    <div className='title'>End Date</div>
+                    <DatePicker date={endDate} onChange={formatEndDate} />
+                </div>
+            </div>
+            <div className='form-field'>
+               <button>Submit</button>
+            </div>
+            
+
+        </div>
+    );
 };
 
 export default Form;

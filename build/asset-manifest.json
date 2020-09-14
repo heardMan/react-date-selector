@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-date-selector/static/css/main.abdc2aa2.chunk.css",
+    "main.js": "/react-date-selector/static/js/main.4d04dcc2.chunk.js",
+    "main.js.map": "/react-date-selector/static/js/main.4d04dcc2.chunk.js.map",
+    "runtime-main.js": "/react-date-selector/static/js/runtime-main.82558083.js",
+    "runtime-main.js.map": "/react-date-selector/static/js/runtime-main.82558083.js.map",
+    "static/js/2.3fc81135.chunk.js": "/react-date-selector/static/js/2.3fc81135.chunk.js",
+    "static/js/2.3fc81135.chunk.js.map": "/react-date-selector/static/js/2.3fc81135.chunk.js.map",
+    "index.html": "/react-date-selector/index.html",
+    "precache-manifest.c49189fa9f41e26d66a9d7419c8d20c8.js": "/react-date-selector/precache-manifest.c49189fa9f41e26d66a9d7419c8d20c8.js",
+    "service-worker.js": "/react-date-selector/service-worker.js",
+    "static/css/main.abdc2aa2.chunk.css.map": "/react-date-selector/static/css/main.abdc2aa2.chunk.css.map",
+    "static/js/2.3fc81135.chunk.js.LICENSE.txt": "/react-date-selector/static/js/2.3fc81135.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.82558083.js",
+    "static/js/2.3fc81135.chunk.js",
+    "static/css/main.abdc2aa2.chunk.css",
+    "static/js/main.4d04dcc2.chunk.js"
+  ]
+}
