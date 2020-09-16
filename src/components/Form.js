@@ -37,11 +37,11 @@ const Form = () => {
     return (
         <div className='form'>
             <div className='form-field'>
-            <div className='title'>Name</div>
+                <div className='title'>Name</div>
                 <input type='text' />
             </div>
             <div className='form-field'>
-            <div className='title'>Email</div>
+                <div className='title'>Email</div>
                 <input type='email' />
             </div>
             <div className='form-field'>
@@ -49,15 +49,18 @@ const Form = () => {
                     <div className='title'>Start Date</div>
                     <DatePicker date={startDate} onChange={formatStartDate} />
                 </div>
+            </div>
+
+            <div className='form-field'>
                 <div className='endDate'>
                     <div className='title'>End Date</div>
                     <DatePicker date={endDate} onChange={formatEndDate} />
                 </div>
             </div>
             <div className='form-field'>
-               <button>Submit</button>
+                <button className='submit'>Submit</button>
             </div>
-            
+
 
         </div>
     );

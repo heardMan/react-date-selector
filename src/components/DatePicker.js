@@ -153,7 +153,7 @@ const DatePicker = props => {
 
         <div className='daySelector'>
             <button className='leftBtn' onClick={stepDateBackward1Day}>{'<'}</button>
-            <span onClick={toggleCalendar} >{formattedDate()}</span>
+            <div onClick={toggleCalendar} >{formattedDate()}</div>
             <button className='rightBtn' onClick={stepDateForward1Day}>{'>'}</button>
         </div>
 
