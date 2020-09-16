@@ -34,6 +34,9 @@ input {
 .submit:active {
   background-color: #22a7f0;
 }
+.submit:hover {
+  background-color: #22a7f0;
+}
 
 .form-field {
   margin: 1rem;
