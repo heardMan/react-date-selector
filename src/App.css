@@ -1,8 +1,9 @@
 body {
   background-color: #2e3131;
+  touch-action: manipulation;
 }
 
-input {
+.name, .email {
   font-size:1.25rem;
   border-radius: 5px;
   background-color: #2e3131;
@@ -24,6 +25,10 @@ input {
   margin-right:auto;
 }
 
+.form-field {
+  margin:1rem;
+}
+
 .submit {
   font-size:1.25rem;
   padding: 1rem;
@@ -38,9 +43,6 @@ input {
   background-color: #22a7f0;
 }
 
-.form-field {
-  margin: 1rem;
-}
 
 .title {
   font-size:1.25rem;
@@ -168,12 +170,14 @@ input {
   font-weight: bold;
 }
 
-.day:hover {
-  background-color: #22a7f0;
-  color: #dadfe1;
-}
-
 .selectedDay { 
   background-color: #2574a9;
   color: #dadfe1;
+}
+
+@media only screen and (min-width: 780px) {
+  .day:hover {
+    background-color: #22a7f0;
+    color: #dadfe1;
+  }
 }

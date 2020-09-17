@@ -38,11 +38,11 @@ const Form = () => {
         <div className='form'>
             <div className='form-field'>
                 <div className='title'>Name</div>
-                <input type='text' />
+                <input className='name' type='text' />
             </div>
             <div className='form-field'>
                 <div className='title'>Email</div>
-                <input type='email' />
+                <input className='email' type='email' />
             </div>
             <div className='form-field'>
                 <div className='startDate'>
