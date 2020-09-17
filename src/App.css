@@ -4,22 +4,24 @@ body {
 
 input {
   font-size:1.25rem;
-  margin-right:auto;
-  margin-left:auto;
   border-radius: 5px;
   background-color: #2e3131;
   border: solid #dadfe1 1px !important;
-  width: 100%;
+  color: #dadfe1;
+  box-sizing: border-box;
+  width:100%;
 }
 
 .form{
   text-align: center;
   border: solid #dadfe1 1px;
-  margin-right:auto;
-  margin-left:auto;
   background-color: #2e3131;
   color: #dadfe1;
   border-radius: 10px;
+  margin-top: 1rem;
+  width:98%;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .submit {
@@ -33,9 +35,6 @@ input {
 }
 
 .submit:active {
-  background-color: #22a7f0;
-}
-.submit:hover {
   background-color: #22a7f0;
 }
 
@@ -60,7 +59,7 @@ input {
 
 .datePicker {
   min-width:280px;
-  max-width:280px;
+  /* max-width:280px; */
   color: #dadfe1;
   border-radius: 10px;
   margin-left:auto;
@@ -71,7 +70,7 @@ input {
 .daySelector {
   border: none;
   padding: 0rem;
-  width: 100%;
+  width:280px;
   position: relative;
   margin-left:auto;
   margin-right:auto;
@@ -90,6 +89,7 @@ input {
   width: 40px;
   height: 40px;
   margin: 0rem;
+  
   font-size: 1.25rem;
   font-weight: bold;
   color:#dadfe1;
@@ -106,27 +106,29 @@ input {
 }
 
 .calendar {
-  border: solid #dadfe1 1px;
-  border-radius: 5px;
   margin-top:1rem;
+  border-top: solid #dadfe1 1px;
 }
 
 .monthSelector { 
   text-align: center;
   /* margin: 0.5rem 0rem 0.5rem 0rem; */
+  padding:0.5rem;
   position: relative;
+  width:280px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .monthSelector > span {
   margin: 0rem 1rem 0rem 1rem;
-  width: 50%;
   font-size:1.5rem;
 }
 
 .monthSelector > button {
   border: none;
   background-color:transparent;
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   margin: 0rem;
   font-size: 1.25rem;
@@ -137,17 +139,21 @@ input {
 .monthSelector>.leftBtn{
   position: absolute;
   left: 5%;
+  bottom:2%;
 }
 
 .monthSelector>.rightBtn{
   position: absolute;
   right: 5%;
+  bottom:2%;
 }
 
 .month {
   display: flex;
   flex-wrap: wrap;
   width: 280px;
+  margin-right: auto;
+  margin-left:auto;
 }
 
 .day, .dayTitle{ 
