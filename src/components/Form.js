@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from '../components/DatePicker.js';
+import { buildQueries } from '@testing-library/react';
 
 const Form = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [displayModal, setDisplayModal] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
 
     const formatStartDate = (rawDate) => {
 
@@ -27,6 +31,42 @@ const Form = () => {
 
     }
 
+    const modal = () => {
+        return (
+            <div>
+            <div className='modal'>
+                <div className='modal-content'>
+                    <div className='modal-header title'>Form Data</div>
+                    <div className='modal-body'>
+                        <div>Name: {name}</div>
+                        <div>Email: {email}</div>
+                        <div>Start Date: {startDate}</div>
+                        <div>End Date: {endDate}</div>
+                    </div>
+                    <div className='modal-footer'>
+                        <button className='btn' onClick={toggleModal}>Ok</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div className='modal-bg' onClick={toggleModal}></div>
+            </div>
+        );
+    }
+
+    const toggleModal = () => {
+
+        if (displayModal === false) {
+
+            return setDisplayModal(true);
+
+        }
+
+        return setDisplayModal(false);
+
+    }
+
+
     useEffect(() => {
 
         formatStartDate((Date.now()));
@@ -38,11 +78,11 @@ const Form = () => {
         <div className='form'>
             <div className='form-field'>
                 <div className='title'>Name</div>
-                <input className='name' type='text' />
+                <input className='name' type='text' value={name} onChange={e=>{setName(e.target.value)}}/>
             </div>
             <div className='form-field'>
                 <div className='title'>Email</div>
-                <input className='email' type='email' />
+                <input className='email' type='email' value={email} onChange={e=>{setEmail(e.target.value)}}/>
             </div>
             <div className='form-field'>
                 <div className='startDate'>
@@ -58,10 +98,9 @@ const Form = () => {
                 </div>
             </div>
             <div className='form-field'>
-                <button className='submit'>Submit</button>
+                <button className='btn' onClick={toggleModal}>Submit</button>
             </div>
-
-
+            {displayModal === true ? modal() : null}
         </div>
     );
 };
