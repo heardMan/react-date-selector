@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from '../components/DatePicker.js';
-import { buildQueries } from '@testing-library/react';
+
 
 const Form = () => {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState(Date.now());
+    const [endDate, setEndDate] = useState(Date.now());
     const [displayModal, setDisplayModal] = useState(false);
+    const [displayDateErrorModal, setDisplayDateErrorModal] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
 
@@ -31,6 +32,34 @@ const Form = () => {
 
     }
 
+
+
+    //DATE MODAL CODE
+
+    const dateErrorModal = () => {
+        return (
+            <div>
+            <div className='modal'>
+                <div className='modal-content'>
+                    <div className='modal-header title'>Form Data</div>
+                    <div className='modal-body'>
+                        End Date Cannot Be Before Start Date
+                    </div>
+                    <div className='modal-footer'>
+                        <button className='btn' onClick={toggleDateErorModal}>Ok</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div className='modal-bg' onClick={toggleDateErorModal}></div>
+            </div>
+        );
+    }
+
+    
+
+    //MODAL CODE
+
     const modal = () => {
         return (
             <div>
@@ -54,9 +83,23 @@ const Form = () => {
         );
     }
 
+    const toggleDateErorModal = () => {
+
+        if (displayDateErrorModal === false) {
+
+            return setDisplayDateErrorModal(true);
+
+        }
+
+        return setDisplayDateErrorModal(false);
+
+    }
+
     const toggleModal = () => {
 
         if (displayModal === false) {
+            formatStartDate(startDate);
+            formatEndDate(endDate)
 
             return setDisplayModal(true);
 
@@ -69,10 +112,19 @@ const Form = () => {
 
     useEffect(() => {
 
-        formatStartDate((Date.now()));
-        formatEndDate((Date.now()));
+        const start = new Date(startDate);
+        const end = new Date(endDate);
 
-    }, [])
+        if(start.getTime()>end.getTime()){
+            
+            const newEndDate = start.setDate(start.getDate() + 1);
+    
+            formatEndDate(newEndDate);
+            toggleDateErorModal();
+
+        }
+
+    })
 
     return (
         <div className='form'>
@@ -101,7 +153,9 @@ const Form = () => {
                 <button className='btn' onClick={toggleModal}>Submit</button>
             </div>
             {displayModal === true ? modal() : null}
+            {displayDateErrorModal === true ? dateErrorModal() : null}
         </div>
+
     );
 };
 

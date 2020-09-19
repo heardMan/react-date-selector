@@ -14,7 +14,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 80%;
+  max-width: 500px;
   
   transform: translateX(-50%) translateY(-50%); /* Negative half of width. */
   z-index: 999;
