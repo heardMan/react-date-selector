@@ -5,57 +5,52 @@ const DatePicker = props => {
 
     const [displayCalendar, setDisplayCalendar] = useState(false);
 
+    const formattedDate = () => {
+        
+        const currentDate = new Date(props.date);
+
+        console.log(currentDate);
+        const day = currentDate.getDate();
+        const month = currentDate.getMonth()+1;
+        const year = currentDate.getFullYear();
+        
+        
+        return `${month}/${day}/${year}`;
+    }
+
     const stepDateForward1Day = () => {
 
-        const date = new Date(props.date);
-        const newDate = new Date(date.setDate(date.getDate() + 1));
+        const currentDate = new Date(props.date);
+        const nextDate = currentDate.setDate(currentDate.getDate() + 1);
 
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(nextDate);
 
     }
 
     const stepDateBackward1Day = () => {
 
-        const date = new Date(props.date);
-        const newDate = new Date(date.setDate(date.getDate() - 1));
+        const currentDate = new Date(props.date);
+        const nextDate = currentDate.setDate(currentDate.getDate() - 1);
 
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(nextDate);
 
     }
 
     const stepDateForward1Month = () => {
 
-        const date = new Date(props.date);
-        const newDate = new Date(date.setMonth(date.getMonth() + 1));
+        const currentDate = new Date(props.date);
+        const nextDate = currentDate.setMonth(currentDate.getMonth() + 1);
 
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(nextDate);
 
     }
 
     const stepDateBackward1Month = () => {
 
-        const date = new Date(props.date);
-        const newDate = new Date(date.setMonth(date.getMonth() - 1));
+        const currentDate = new Date(props.date);
+        const nextDate = currentDate.setMonth(currentDate.getMonth() - 1);
 
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
-
-    }
-
-    const stepDateForward1Year = () => {
-
-        const date = new Date(props.date);
-        const newDate = new Date(date.setFullYear(date.getFullYear() + 1));
-
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
-
-    }
-
-    const stepDateBackward1Year = () => {
-
-        const date = new Date(props.date);
-        const newDate = new Date(date.setFullYear(date.getFullYear() - 1));
-
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(nextDate);
 
     }
 
@@ -73,15 +68,9 @@ const DatePicker = props => {
 
     const selectDateFromCalendar = e => {
 
-        const date = new Date(e.target.getAttribute("data"));
-        // const day = currentDate.getDate();
-        // const month = currentDate.getMonth() + 1;
-        // const year = currentDate.getFullYear();
-        return props.onChange(`${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`);
+        return props.onChange(e.target.getAttribute("data"));
 
     }
-
-    const handleChange = e => props.onChange(e.target.value)
 
     const getDays = () => {
 
@@ -163,15 +152,9 @@ const DatePicker = props => {
     return (<div className='datePicker'>
 
         <div className='daySelector'>
-            <button className='leftBtn2' onClick={stepDateBackward1Year}>{'<<'}</button>
             <button className='leftBtn' onClick={stepDateBackward1Day}>{'<'}</button>
-            <input type='text'
-                value={props.date}
-                placeholder={'yyyy/mm/dd'}
-                onChange={handleChange}
-                onClick={toggleCalendar} />
+            <div onClick={toggleCalendar} >{formattedDate()}</div>
             <button className='rightBtn' onClick={stepDateForward1Day}>{'>'}</button>
-            <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
         </div>
 
         {displayCalendar === true ? getDays() : null}
