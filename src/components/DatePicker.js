@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import dateUtil from '../utility/date.js';
 
+/**
+ * @constant
+ * @function
+ * @param {object} props properties object 
+ * 
+ */
+
 const DatePicker = props => {
 
+    /**
+     * Remembers the state of the calendar's visibility
+     * @const {boolean} displayCalendar
+     * @default false
+    */
     const [displayCalendar, setDisplayCalendar] = useState(false);
+
+    /**
+     * Steps day of props.date forward (1) Day
+     * @param {string} props.date ISO 8601 date string
+     */
 
     const stepDateForward1Day = () => {
 
@@ -14,6 +31,11 @@ const DatePicker = props => {
 
     }
 
+    /**
+     * Steps day of props.date backward (1) Day
+     * @param {string} props.date ISO 8601 date string
+     */
+
     const stepDateBackward1Day = () => {
 
         const date = new Date(props.date);
@@ -22,6 +44,11 @@ const DatePicker = props => {
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
+
+    /**
+     * Steps day of props.date forward (1) Month
+     * @param {string} props.date ISO 8601 date string
+     */
 
     const stepDateForward1Month = () => {
 
@@ -32,6 +59,11 @@ const DatePicker = props => {
 
     }
 
+    /**
+     * Steps day of props.date backward (1) Month
+     * @param {string} props.date ISO 8601 date string
+     */
+
     const stepDateBackward1Month = () => {
 
         const date = new Date(props.date);
@@ -40,6 +72,11 @@ const DatePicker = props => {
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
+
+    /**
+     * Steps day of props.date forward (1) Year
+     * @param {string} props.date ISO 8601 date string
+     */
 
     const stepDateForward1Year = () => {
 
@@ -50,6 +87,11 @@ const DatePicker = props => {
 
     }
 
+    /**
+     * Steps day of props.date backward (1) Year
+     * @param {string} props.date ISO 8601 date string
+     */
+
     const stepDateBackward1Year = () => {
 
         const date = new Date(props.date);
@@ -58,6 +100,10 @@ const DatePicker = props => {
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
+
+    /**
+     * 
+     */
 
     const toggleCalendar = () => {
 
@@ -74,9 +120,6 @@ const DatePicker = props => {
     const selectDateFromCalendar = e => {
 
         const date = new Date(e.target.getAttribute("data"));
-        // const day = currentDate.getDate();
-        // const month = currentDate.getMonth() + 1;
-        // const year = currentDate.getFullYear();
         return props.onChange(`${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`);
 
     }
