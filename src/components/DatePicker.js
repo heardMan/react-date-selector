@@ -2,130 +2,182 @@ import React, { useState } from 'react';
 import dateUtil from '../utility/date.js';
 
 /**
- * @constant
- * @function
- * @param {object} props properties object 
- * 
+ * DatePicker
+ * @author Mark Heard
+ * @copyright 2020 - 2021
+ * @requires ReactJS - library maintained by facebook
+ * @requires utility/date.js - a collection of date related method used to streamline coding of date logic
+ * @param {object} props - properties and methods inherited fromthe parent component
+ * This component makes use of state properties and methods inherited from a higher level component
+ * @property {string} props.date - this is the date information inherited from a higher level component
+ * @method props.onChange - this is the method that handle updating the date variable in the parent component when it is changed by the Date Picker
+ * @returns the JSX datepicker element to be rendered
  */
 
 const DatePicker = props => {
 
     /**
-     * Remembers the state of the calendar's visibility
-     * @const {boolean} displayCalendar
+     * @constant displayCalendar
+     * @type {boolean} 
+     * records the current state of the calendar's display status
+     * if true the calendar is rendered
+     * if false the calendar will not be visible
+     */
+
+    /**
+     * @method setDisplayCalendar
      * @default false
-    */
+     * @returns state change handling function
+     */
+
     const [displayCalendar, setDisplayCalendar] = useState(false);
 
     /**
-     * Steps day of props.date forward (1) Day
-     * @param {string} props.date ISO 8601 date string
+     * @method stepDateForward1Day
+     * steps date forward one day
+     * @returns the props.onChange method with the new date formatted as a string
      */
 
     const stepDateForward1Day = () => {
 
+        //create a new date reference from parent component's state
         const date = new Date(props.date);
+        //create a date reference for the new date
         const newDate = new Date(date.setDate(date.getDate() + 1));
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
 
     /**
-     * Steps day of props.date backward (1) Day
-     * @param {string} props.date ISO 8601 date string
+     * @method stepDateBackward1Day
+     * steps date backward one day
+     * @returns the props.onChange method with the new date formatted as a string
      */
 
     const stepDateBackward1Day = () => {
 
+        //create a new date reference from parent component's state
         const date = new Date(props.date);
+        //create a date reference for the new date
         const newDate = new Date(date.setDate(date.getDate() - 1));
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
 
     /**
-     * Steps day of props.date forward (1) Month
-     * @param {string} props.date ISO 8601 date string
+     * @method stepDateForward1Month
+     * steps date forward one month
+     * @returns the props.onChange method with the new date formatted as a string
      */
 
     const stepDateForward1Month = () => {
 
+        //create a new date reference from parent component's state
         const date = new Date(props.date);
+        //create a date reference for the new date
         const newDate = new Date(date.setMonth(date.getMonth() + 1));
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
 
     /**
-     * Steps day of props.date backward (1) Month
-     * @param {string} props.date ISO 8601 date string
+     * @method stepDateBackward1Month
+     * steps date backward one month
+     * @returns the props.onChange method with the new date formatted as a string
      */
 
     const stepDateBackward1Month = () => {
 
+        //create a new date reference from parent component's state
         const date = new Date(props.date);
+        //create a date reference for the new date
         const newDate = new Date(date.setMonth(date.getMonth() - 1));
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
 
     /**
-     * Steps day of props.date forward (1) Year
-     * @param {string} props.date ISO 8601 date string
+     * @method stepDateForward1Year
+     * steps date forward one year
+     * @returns the props.onChange method with the new date formatted as a string
      */
 
     const stepDateForward1Year = () => {
 
+        //create a new date reference from parent component's state
         const date = new Date(props.date);
+        //create a date reference for the new date
         const newDate = new Date(date.setFullYear(date.getFullYear() + 1));
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
 
     /**
-     * Steps day of props.date backward (1) Year
-     * @param {string} props.date ISO 8601 date string
+     * @method stepDateBackward1Year
+     * steps date backward one year
+     * @returns the props.onChange method with the new date formatted as a string
      */
 
     const stepDateBackward1Year = () => {
 
+        //create a new date reference from parent component's state
         const date = new Date(props.date);
+        //create a date reference for the new date
         const newDate = new Date(date.setFullYear(date.getFullYear() - 1));
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
 
     }
 
     /**
-     * 
+     * @method toggleCalendar
+     * toggles the calendar's display variable between true and false
+     * @returns setDisplayCalendar with the new boolean value
      */
 
     const toggleCalendar = () => {
 
+        //if the calendar is not displayed
         if (displayCalendar === false) {
-
+            //change the calendar's display state to true
             return setDisplayCalendar(true);
-
         }
-
+        //change the calendar's display state to false
         return setDisplayCalendar(false);
 
     }
 
+    /**
+     * @method selectDateFromCalendar
+     * @param {object} e - javascript click event created when a date is selected [clicked] from the calendar element with the mouse 
+     * @returns the props.onChange method with the new date formatted as a string
+     */
+
     const selectDateFromCalendar = e => {
 
+        //create a new date reference from parent component's state
         const date = new Date(e.target.getAttribute("data"));
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(`${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`);
 
     }
 
+    /**
+     * @method handleChange
+     * @param {object} e - javascript click event created when a date is selected [clicked] from the calendar element with the mouse
+     * @returns the props.onChange method with the new date formatted as a string
+     */
+
     const handleChange = e => props.onChange(e.target.value)
 
+    /**
+     * @method getDays
+     */
     const getDays = () => {
 
         const currentDate = new Date(props.date);
@@ -203,23 +255,34 @@ const DatePicker = props => {
 
     }
 
-    return (<div className='datePicker'>
+    /**
+     * GETDAYS END
+     */
 
-        <div className='daySelector'>
-            <button className='leftBtn2' onClick={stepDateBackward1Year}>{'<<'}</button>
-            <button className='leftBtn' onClick={stepDateBackward1Day}>{'<'}</button>
-            <input type='text'
-                value={props.date}
-                placeholder={'yyyy/mm/dd'}
-                onChange={handleChange}
-                onClick={toggleCalendar} />
-            <button className='rightBtn' onClick={stepDateForward1Day}>{'>'}</button>
-            <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
+    /**
+     * this is the terminal return statement for the DatePicker componenet
+     * this statement returns the datepicker element to be rendered
+     */
+
+    return (
+
+        <div className='datePicker'>
+
+            <div className='daySelector'>
+                <button className='leftBtn2' onClick={stepDateBackward1Year}>{'<<'}</button>
+                <button className='leftBtn' onClick={stepDateBackward1Day}>{'<'}</button>
+                <input type='text'
+                    value={props.date}
+                    placeholder={'yyyy/mm/dd'}
+                    onChange={handleChange}
+                    onClick={toggleCalendar} />
+                <button className='rightBtn' onClick={stepDateForward1Day}>{'>'}</button>
+                <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
+            </div>
+
+            {displayCalendar === true ? getDays() : null}
+
         </div>
-
-        {displayCalendar === true ? getDays() : null}
-
-    </div>
 
     );
 
