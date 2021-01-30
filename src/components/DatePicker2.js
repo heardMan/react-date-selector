@@ -191,7 +191,8 @@ const DatePicker = props => {
     const handleChange = e => props.onChange(e.target.value)
 
     /**
-     * @method calendar
+     * @method getDays
+     * @returns the setDays method with a new array of days
      */
     const getDays = () => {
 
@@ -212,26 +213,34 @@ const DatePicker = props => {
             //referenvce to the current day in this i-level loop
             const day = new Date(year, month, i + 1);
 
-            //if this is the first iteration
+            //if this is the first iteration some days from the preceeding month should be gathered
             if (i === 0) {
 
+                //to fill out the calendar component a few days 
+                //from the preceeding month must be added to the 
+                //days array, in this case the built-in getDays method
+                //will yield the proper number of days
                 for (var j = 0; j < day.getDay(); j++) {
 
+                    //create a new date object and add each day to the updatedDays Array for each preceeding day
                     updatedDays.push(new Date(year, month, i - (day.getDay() - (j + 1))));
 
                 }
 
             }
 
+            //add the current day to the updatedDays array
             updatedDays.push(day);
 
         }
 
         //to fill out the calendar component a few days from the
         //succeeding month must be added to the days array
-        //since the calendar 
+        //since the calendar is based on a 7 day week the modulus
+        //of 7 is used to determine the number of remiaing days
         for (let i = 0; i < updatedDays.length % 7; i++) {
 
+            //create a new date object and add each day to the updatedDays Array for each succeeding day
             updatedDays.push(new Date(year, month + 1, i + 1));
 
         }
@@ -245,11 +254,15 @@ const DatePicker = props => {
     useEffect(() => { getDays() }, [props.date])
 
     /**
+     * MAIN RETURN STATEMENT
      * this is the terminal return statement for the DatePicker componenet
+     * all the HTML is contained with in this statement
      * this statement returns the datepicker element to be rendered
      */
 
     return (
+
+
 
         <div className='datePicker'>
 
@@ -266,45 +279,56 @@ const DatePicker = props => {
                 <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
             </div>
 
-            <div className='calendar'>
+            {displayCalendar ? 
+            //if display calender is true 
+            (
+                <div className='calendar'>
 
-                <div className='monthSelector'>
-                    <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
-                    <span>{dateUtil.formatMonth(new Date(props.date).getMonth())}</span>
-                    <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
+                    <div className='monthSelector'>
+                        <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
+                        <span>{dateUtil.formatMonth(new Date(props.date).getMonth())}</span>
+                        <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
+                    </div>
+
+                    <div className='month'>
+
+                        <div className='dayTitle'>S</div>
+                        <div className='dayTitle'>M</div>
+                        <div className='dayTitle'>T</div>
+                        <div className='dayTitle'>W</div>
+                        <div className='dayTitle'>T</div>
+                        <div className='dayTitle'>F</div>
+                        <div className='dayTitle'>S</div>
+
+                        {days.map((day, i) => {
+
+                            const formattedDay = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
+
+                            const selectedDay = new Date(props.date);
+
+                            const formattedSelectedDay = `${selectedDay.getFullYear()}-${selectedDay.getMonth()}-${selectedDay.getDate()}`;
+
+                            if (formattedDay == formattedSelectedDay) {
+
+                                return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                            }
+
+                            return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                        })}
+
+                    </div>
+
                 </div>
+                //
+                ) : (null)}
 
-                <div className='month'>
 
-                    <div className='dayTitle'>S</div>
-                    <div className='dayTitle'>M</div>
-                    <div className='dayTitle'>T</div>
-                    <div className='dayTitle'>W</div>
-                    <div className='dayTitle'>T</div>
-                    <div className='dayTitle'>F</div>
-                    <div className='dayTitle'>S</div>
 
-                    {days.map((day, i) => {
 
-                        const formattedDay = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
 
-                        const selectedDay = new Date(props.date);
 
-                        const formattedSelectedDay = `${selectedDay.getFullYear()}-${selectedDay.getMonth()}-${selectedDay.getDate()}`;
-
-                        if (formattedDay == formattedSelectedDay) {
-
-                            return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
-                        }
-
-                        return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
-                    })}
-
-                </div>
-
-            </div>
 
         </div>
 
