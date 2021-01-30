@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from './DatePicker.js';
+import DatePicker2 from './DatePicker2.js';
 
 
 const Form = () => {
@@ -119,10 +120,17 @@ const Form = () => {
                 </div>
             </div>
 
-            <div className='form-field'>
+            {/* <div className='form-field'>
                 <div className='endDate'>
                     <div className='title'>End Date</div>
                     <DatePicker date={endDate} onChange={setEndDate} />
+                </div>
+            </div> */}
+
+            <div className='form-field'>
+                <div className='endDate'>
+                    <div className='title'>End Date</div>
+                    <DatePicker2 date={endDate} onChange={setEndDate} />
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dateUtil from '../utility/date.js';
 
 /**
@@ -19,6 +19,7 @@ const DatePicker = props => {
     /**
      * @constant displayCalendar
      * @type {boolean} 
+     * @default false
      * records the current state of the calendar's display status
      * if true the calendar is rendered
      * if false the calendar will not be visible
@@ -26,11 +27,25 @@ const DatePicker = props => {
 
     /**
      * @method setDisplayCalendar
-     * @default false
-     * @returns state change handling function
+     * @returns state change handling function for the displayCalendar state variable
      */
 
     const [displayCalendar, setDisplayCalendar] = useState(false);
+
+    /**
+     * @constant days
+     * @type {Array}
+     * @default []
+     * an array of date objects to be rendered by the calendar element
+     * this array is controlled by the getDays method
+     */
+
+    /**
+     * @method setDays
+     * @returns state change handling function for the days state variable
+     */
+
+    const [days, setDays] = useState([])
 
     /**
      * @method stepDateForward1Day
@@ -178,82 +193,56 @@ const DatePicker = props => {
     /**
      * @method calendar
      */
-    const calendar = () => {
+    const getDays = () => {
 
+        //format props provided date as a new date object
         const currentDate = new Date(props.date);
+        //the month of the current props.date
         const month = currentDate.getMonth();
+        //the year of the current props.date
         const year = currentDate.getFullYear();
+        //the number of days in the current month
         const numberOfDays = new Date(year, month + 1, 0).getDate();
-        const days = [];
+        //placeholder array that will be used to update state
+        const updatedDays = [];
 
+        //for each day in the current month
         for (let i = 0; i < numberOfDays; i++) {
 
+            //referenvce to the current day in this i-level loop
             const day = new Date(year, month, i + 1);
 
+            //if this is the first iteration
             if (i === 0) {
 
                 for (var j = 0; j < day.getDay(); j++) {
 
-                    days.push(new Date(year, month, i - (day.getDay() - (j + 1))));
+                    updatedDays.push(new Date(year, month, i - (day.getDay() - (j + 1))));
 
                 }
 
             }
 
-            days.push(day);
+            updatedDays.push(day);
 
         }
 
-        for (let i = 0; i < days.length % 7; i++) {
+        //to fill out the calendar component a few days from the
+        //succeeding month must be added to the days array
+        //since the calendar 
+        for (let i = 0; i < updatedDays.length % 7; i++) {
 
-            days.push(new Date(year, month + 1, i + 1));
+            updatedDays.push(new Date(year, month + 1, i + 1));
 
         }
 
-        return (
-
-            <div className='calendar'>
-
-                <div className='monthSelector'>
-                    <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
-                    <span>{dateUtil.formatMonth(month)}</span>
-                    <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
-                </div>
-
-                <div className='month'>
-
-                    <div className='dayTitle'>S</div>
-                    <div className='dayTitle'>M</div>
-                    <div className='dayTitle'>T</div>
-                    <div className='dayTitle'>W</div>
-                    <div className='dayTitle'>T</div>
-                    <div className='dayTitle'>F</div>
-                    <div className='dayTitle'>S</div>
-
-                    {days.map((day, i) => {
-
-                        const dayStr = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
-
-                        const selectedDay = new Date(props.date);
-
-                        const selectedDayStr = `${selectedDay.getFullYear()}-${selectedDay.getMonth()}-${selectedDay.getDate()}`;
-
-                        if (dayStr === selectedDayStr) {
-
-                            return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
-                        }
-
-                        return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
-                    })}
-
-                </div>
-
-            </div>
-        );
+        //update the day state variable
+        return setDays(updatedDays)
 
     }
+
+    //everytime props.date changes run the getDays method
+    useEffect(() => { getDays() }, [props.date])
 
     /**
      * this is the terminal return statement for the DatePicker componenet
@@ -271,12 +260,51 @@ const DatePicker = props => {
                     value={props.date}
                     placeholder={'yyyy/mm/dd'}
                     onChange={handleChange}
-                    onClick={toggleCalendar} />
+                    onClick={toggleCalendar}
+                />
                 <button className='rightBtn' onClick={stepDateForward1Day}>{'>'}</button>
                 <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
             </div>
 
-            {displayCalendar === true ? calendar() : null}
+            <div className='calendar'>
+
+                <div className='monthSelector'>
+                    <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
+                    <span>{dateUtil.formatMonth(new Date(props.date).getMonth())}</span>
+                    <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
+                </div>
+
+                <div className='month'>
+
+                    <div className='dayTitle'>S</div>
+                    <div className='dayTitle'>M</div>
+                    <div className='dayTitle'>T</div>
+                    <div className='dayTitle'>W</div>
+                    <div className='dayTitle'>T</div>
+                    <div className='dayTitle'>F</div>
+                    <div className='dayTitle'>S</div>
+
+                    {days.map((day, i) => {
+
+                        const formattedDay = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
+
+                        const selectedDay = new Date(props.date);
+
+                        const formattedSelectedDay = `${selectedDay.getFullYear()}-${selectedDay.getMonth()}-${selectedDay.getDate()}`;
+
+                        if (formattedDay == formattedSelectedDay) {
+
+                            return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                        }
+
+                        return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                    })}
+
+                </div>
+
+            </div>
 
         </div>
 
