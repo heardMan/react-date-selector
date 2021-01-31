@@ -17,5 +17,6 @@
 <p>WCAG/A11Y Compliance</p>
 <p>Error Handling</p>
 <p>Date Range Selection</p>
+<p>Improved Styling</p>
 
 <p></p>
