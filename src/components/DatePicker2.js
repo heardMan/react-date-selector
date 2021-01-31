@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import dateUtil from '../utility/date.js';
 
 /**
  * DatePicker
  * @author Mark Heard
  * @copyright 2020 - 2021
- * @requires ReactJS - library maintained by facebook
- * @requires utility/date.js - a collection of date related method used to streamline coding of date logic
- * @param {object} props - properties and methods inherited fromthe parent component
+ * @requires ReactJS - library maintained by facebook -- https://reactjs.org/
+ * @param {object} props - properties and methods inherited from the parent component
  * This component makes use of state properties and methods inherited from a higher level component
  * @property {string} props.date - this is the date information inherited from a higher level component
  * @method props.onChange - this is the method that handle updating the date variable in the parent component when it is changed by the Date Picker
@@ -45,12 +43,52 @@ const DatePicker = props => {
      * @returns state change handling function for the days state variable
      */
 
-    const [days, setDays] = useState([])
+    const [days, setDays] = useState([]);
+
+
+    /**
+     * @property {array} dayNames
+     * array containing day names used to complement javascript's built in date functions
+     * ex: dayNames[new Date().getDay()] will return the current day at the time of code execution
+     */
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+        "Saturday", "Sunday"
+    ];
+
+    /**
+     * @property {array} monthNames
+     * array containing month names used to complement javascript's built in date functions
+     * ex: dayNames[new Date().getMonth()] will return the current month at the time of code execution
+     */
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    /**
+     * @method formatDate
+     * provides for atomic date formatting
+     * @returns date formatted as a string
+     */
+
+    const formatDate = date => {
+
+        //get the date of the month of the provided date
+        const day = date.getDate();
+        //get the month of the provided date
+        //since months are start their index at zero 1 is added
+        // to make it align with the more common month numbering system starting at 1
+        const month = date.getMonth() + 1;
+        //get the year the provided date
+        const year = date.getFullYear();
+
+        //return the date formatted as a sting
+        return `${year}/${month}/${day}`;
+    };
 
     /**
      * @method stepDateForward1Day
-     * steps date forward one day
-     * @returns the props.onChange method with the new date formatted as a string
+     * steps props.date forward by one day
+     * @returns props.onChange method with the new date formatted as a string
      */
 
     const stepDateForward1Day = () => {
@@ -60,13 +98,13 @@ const DatePicker = props => {
         //create a date reference for the new date
         const newDate = new Date(date.setDate(date.getDate() + 1));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(formatDate(newDate));
 
     }
 
     /**
      * @method stepDateBackward1Day
-     * steps date backward one day
+     * steps props.date backward by one day
      * @returns the props.onChange method with the new date formatted as a string
      */
 
@@ -77,13 +115,13 @@ const DatePicker = props => {
         //create a date reference for the new date
         const newDate = new Date(date.setDate(date.getDate() - 1));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(formatDate(newDate));
 
     }
 
     /**
      * @method stepDateForward1Month
-     * steps date forward one month
+     * steps props.date forward by one month
      * @returns the props.onChange method with the new date formatted as a string
      */
 
@@ -94,13 +132,13 @@ const DatePicker = props => {
         //create a date reference for the new date
         const newDate = new Date(date.setMonth(date.getMonth() + 1));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(formatDate(newDate));
 
     }
 
     /**
      * @method stepDateBackward1Month
-     * steps date backward one month
+     * steps props.date backward by one month
      * @returns the props.onChange method with the new date formatted as a string
      */
 
@@ -111,13 +149,13 @@ const DatePicker = props => {
         //create a date reference for the new date
         const newDate = new Date(date.setMonth(date.getMonth() - 1));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(formatDate(newDate));
 
     }
 
     /**
      * @method stepDateForward1Year
-     * steps date forward one year
+     * steps props.date forward one year
      * @returns the props.onChange method with the new date formatted as a string
      */
 
@@ -128,13 +166,13 @@ const DatePicker = props => {
         //create a date reference for the new date
         const newDate = new Date(date.setFullYear(date.getFullYear() + 1));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(formatDate(newDate));
 
     }
 
     /**
      * @method stepDateBackward1Year
-     * steps date backward one year
+     * steps props.date backward one year
      * @returns the props.onChange method with the new date formatted as a string
      */
 
@@ -145,14 +183,14 @@ const DatePicker = props => {
         //create a date reference for the new date
         const newDate = new Date(date.setFullYear(date.getFullYear() - 1));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${newDate.getFullYear()}/${newDate.getMonth() + 1}/${newDate.getDate()}`);
+        return props.onChange(formatDate(newDate));
 
     }
 
     /**
      * @method toggleCalendar
      * toggles the calendar's display variable between true and false
-     * @returns setDisplayCalendar with the new boolean value
+     * @returns setDisplayCalendar with the new boolean value depending on its current value
      */
 
     const toggleCalendar = () => {
@@ -162,6 +200,7 @@ const DatePicker = props => {
             //change the calendar's display state to true
             return setDisplayCalendar(true);
         }
+
         //change the calendar's display state to false
         return setDisplayCalendar(false);
 
@@ -178,7 +217,7 @@ const DatePicker = props => {
         //create a new date reference from parent component's state
         const date = new Date(e.target.getAttribute("data"));
         //update the parent component's state with the new date formatted as a string using the props.onChange method
-        return props.onChange(`${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`);
+        return props.onChange(formatDate(date));
 
     }
 
@@ -192,6 +231,11 @@ const DatePicker = props => {
 
     /**
      * @method getDays
+     * this method builds an array contain date object to be rendered within
+     * an HTML element-- in order to create a calendar that aligns with a 
+     * day grid format ex:(S-M-T-W-T-F-S) a certain number or days from both the 
+     * preceeding and succeeding months must be gathered and added to the 
+     * beggining and end of the array respectively
      * @returns the setDays method with a new array of days
      */
     const getDays = () => {
@@ -261,11 +305,16 @@ const DatePicker = props => {
      */
 
     return (
-
-
-
         <div className='datePicker'>
-
+            
+            {
+                //this is the HTML for the date selection control
+                //the controls are composed of two pairs of buttons
+                //one pair to step the date forward or backward by 
+                //one day or one year. between these two pairs of 
+                //buttons is a text input that allows for direct 
+                //manipulation of the date
+            }
             <div className='daySelector'>
                 <button className='leftBtn2' onClick={stepDateBackward1Year}>{'<<'}</button>
                 <button className='leftBtn' onClick={stepDateBackward1Day}>{'<'}</button>
@@ -279,55 +328,69 @@ const DatePicker = props => {
                 <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
             </div>
 
-            {displayCalendar ? 
-            //if display calender is true 
-            (
-                <div className='calendar'>
+            {displayCalendar ?
+                //if display calender is true render the following HTML element
+                (
+                    <div className='calendar'>
 
-                    <div className='monthSelector'>
-                        <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
-                        <span>{dateUtil.formatMonth(new Date(props.date).getMonth())}</span>
-                        <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
-                    </div>
+                        {
+                            //this is the HTML for the month selection controls
+                            //the controls are composed of two buttons that are 
+                            //used to step the date backwards and forwards by one
+                            //month. between the buttons a <span> element that 
+                            //evaluates props.date for the month of the date stored
+                            //and renders that month as the title using the 
+                            //monthNames array
+                        }
+                        <div className='monthSelector'>
+                            <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
+                            <span>{monthNames[(new Date(props.date).getMonth())]}</span>
+                            <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
+                        </div>
 
-                    <div className='month'>
+                        <div className='month'>
 
-                        <div className='dayTitle'>S</div>
-                        <div className='dayTitle'>M</div>
-                        <div className='dayTitle'>T</div>
-                        <div className='dayTitle'>W</div>
-                        <div className='dayTitle'>T</div>
-                        <div className='dayTitle'>F</div>
-                        <div className='dayTitle'>S</div>
-
-                        {days.map((day, i) => {
-
-                            const formattedDay = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
-
-                            const selectedDay = new Date(props.date);
-
-                            const formattedSelectedDay = `${selectedDay.getFullYear()}-${selectedDay.getMonth()}-${selectedDay.getDate()}`;
-
-                            if (formattedDay == formattedSelectedDay) {
-
-                                return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
+                            {
+                                //the following HTML creates the header columns 
+                                //for the day grid in the calendar element
+                                //there is one element for each day of thte week
                             }
+                            <div className='dayTitle'>S</div>
+                            <div className='dayTitle'>M</div>
+                            <div className='dayTitle'>T</div>
+                            <div className='dayTitle'>W</div>
+                            <div className='dayTitle'>T</div>
+                            <div className='dayTitle'>F</div>
+                            <div className='dayTitle'>S</div>
 
-                            return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+                            {//iterate through the days array and render each day in the
+                                days.map((day, i) => {
 
-                        })}
+                                    //create a new date object for the selected day
+                                    const selectedDay = new Date(props.date);
+
+                                    //if the current day in the loop is equal to the selected date stored in props.date
+                                    if (formatDate(day) === formatDate(selectedDay)) {
+
+                                        //return an HTML element with all the day's information
+                                        //with the class 'selectedDay' to change it background 
+                                        //color and denote that this is the currently selected date
+                                        return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                                    }
+
+                                    //return an HTML element with all the day's information
+                                    return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                                })}
+
+                        </div>
 
                     </div>
-
-                </div>
-                //
-                ) : (null)}
-
-
-
-
-
+                    //if displayCalendar is false return null and do not render an additional HTML related to the calendar
+                ) : (
+                    null
+                )}
 
 
         </div>
