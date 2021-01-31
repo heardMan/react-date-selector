@@ -94,11 +94,11 @@ const Form = () => {
         <div className='form'>
             <div className='form-field'>
                 <div className='title'>Name</div>
-                <input className='name' type='text' value={name} onChange={e => { setName(e.target.value) }} />
+                <input className='name' aria-label='name' type='text' value={name} onChange={e => { setName(e.target.value) }} />
             </div>
             <div className='form-field'>
                 <div className='title'>Email</div>
-                <input className='email' type='email' value={email} onChange={e => { setEmail(e.target.value) }} />
+                <input className='email' aria-label='email' type='email' value={email} onChange={e => { setEmail(e.target.value) }} />
             </div>
 
             <div className='form-field'>

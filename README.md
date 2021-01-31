@@ -11,12 +11,14 @@
 <p>The date selector is verified to work on current versions of: Chrome, Firefox, Safari, Opera, Safari Mobile, and Chrome Mobile.</p>
 
 <p>To avoid using the browsers default date picker; the component utilizes a "text" input as opposed to the "date" input.</p>
-<p></p>
 
 <h2>Road Map</h2>
-<p>WCAG/A11Y Compliance</p>
-<p>Error Handling</p>
-<p>Date Range Selection</p>
-<p>Improved Styling</p>
+
+<ul>
+  <li>Improve Performance</li>
+  <li>User Friendly Error Handling</li>
+  <li>Date Range Selection</li>
+  <li>Improved Styling</li>
+</ul>
 
 <p></p>
