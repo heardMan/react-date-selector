@@ -34,5 +34,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://heardman.github.io/react-date-selector"
+  "homepage": "https://heardman.github.io/react-date-selector",
+  "devDependencies": {
+    "jsdoc": "^3.6.6"
+  }
 }
