@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import rightArrow  from '../icons/arrow_forward_ios-white-18dp.svg';
+import leftArrow  from '../icons/arrow_back_ios-white-18dp.svg';
+import rightDblArrow  from '../icons/double_arrow_forward_ios-white-18dp.svg';
+import leftDblArrow  from '../icons/double_arrow_back_ios-white-18dp.svg';
 
 /**
  * DatePicker
@@ -316,16 +320,16 @@ const DatePicker = props => {
                 //manipulation of the date
             }
             <div className='daySelector'>
-                <button className='leftBtn2' onClick={stepDateBackward1Year}>{'<<'}</button>
-                <button className='leftBtn' onClick={stepDateBackward1Day}>{'<'}</button>
+                <button className='leftBtn2' onClick={stepDateBackward1Year}><img src={leftDblArrow} alt=''/></button>
+                <button className='leftBtn' onClick={stepDateBackward1Day}><img src={leftArrow}/></button>
                 <input type='text'
                     value={props.date}
                     placeholder={'yyyy/mm/dd'}
                     onChange={handleChange}
                     onClick={toggleCalendar}
                 />
-                <button className='rightBtn' onClick={stepDateForward1Day}>{'>'}</button>
-                <button className='rightBtn2' onClick={stepDateForward1Year}>{'>>'}</button>
+                <button className='rightBtn' onClick={stepDateForward1Day}>{<img src={rightArrow} alt=''/>}</button>
+                <button className='rightBtn2' onClick={stepDateForward1Year}><img src={rightDblArrow} alt=''/></button>
             </div>
 
             {displayCalendar ?
@@ -343,9 +347,9 @@ const DatePicker = props => {
                             //monthNames array
                         }
                         <div className='monthSelector'>
-                            <button className='leftBtn' onClick={stepDateBackward1Month}>{'<'}</button>
+                            <button className='leftBtn' onClick={stepDateBackward1Month}><img src={leftArrow} alt=''/></button>
                             <span>{monthNames[(new Date(props.date).getMonth())]}</span>
-                            <button className='rightBtn' onClick={stepDateForward1Month}>{'>'}</button>
+                            <button className='rightBtn' onClick={stepDateForward1Month}><img src={rightArrow} alt=''/></button>
                         </div>
 
                         <div className='month'>
