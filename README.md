@@ -15,8 +15,9 @@
 <h2>Road Map</h2>
 
 <ul>
-  <li>Improve Performance</li>
+  <li>Increase Tap Target Size to improve SEO</li>
   <li>Improve Acccessibility</li>
+  <li>Improve Unit Testing</li>
   <li>User Friendly Error Handling</li>
   <li>Date Range Selection</li>
   <li>Improved Styling</li>
