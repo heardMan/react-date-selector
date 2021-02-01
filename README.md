@@ -16,6 +16,7 @@
 
 <ul>
   <li>Improve Performance</li>
+  <li>Improve Acccessibility</li>
   <li>User Friendly Error Handling</li>
   <li>Date Range Selection</li>
   <li>Improved Styling</li>
