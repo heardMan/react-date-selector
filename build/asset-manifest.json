@@ -1,22 +1,26 @@
 {
   "files": {
     "main.css": "/react-date-selector/static/css/main.946824fd.chunk.css",
-    "main.js": "/react-date-selector/static/js/main.9f310ecb.chunk.js",
-    "main.js.map": "/react-date-selector/static/js/main.9f310ecb.chunk.js.map",
+    "main.js": "/react-date-selector/static/js/main.943aeadd.chunk.js",
+    "main.js.map": "/react-date-selector/static/js/main.943aeadd.chunk.js.map",
     "runtime-main.js": "/react-date-selector/static/js/runtime-main.82558083.js",
     "runtime-main.js.map": "/react-date-selector/static/js/runtime-main.82558083.js.map",
-    "static/js/2.3fc81135.chunk.js": "/react-date-selector/static/js/2.3fc81135.chunk.js",
-    "static/js/2.3fc81135.chunk.js.map": "/react-date-selector/static/js/2.3fc81135.chunk.js.map",
+    "static/js/2.99d2d756.chunk.js": "/react-date-selector/static/js/2.99d2d756.chunk.js",
+    "static/js/2.99d2d756.chunk.js.map": "/react-date-selector/static/js/2.99d2d756.chunk.js.map",
     "index.html": "/react-date-selector/index.html",
-    "precache-manifest.865f3d0f5051352b2eef8c2de062eda4.js": "/react-date-selector/precache-manifest.865f3d0f5051352b2eef8c2de062eda4.js",
+    "precache-manifest.381f71dc6ba6797d776e64ebebf7afb3.js": "/react-date-selector/precache-manifest.381f71dc6ba6797d776e64ebebf7afb3.js",
     "service-worker.js": "/react-date-selector/service-worker.js",
     "static/css/main.946824fd.chunk.css.map": "/react-date-selector/static/css/main.946824fd.chunk.css.map",
-    "static/js/2.3fc81135.chunk.js.LICENSE.txt": "/react-date-selector/static/js/2.3fc81135.chunk.js.LICENSE.txt"
+    "static/js/2.99d2d756.chunk.js.LICENSE.txt": "/react-date-selector/static/js/2.99d2d756.chunk.js.LICENSE.txt",
+    "static/media/arrow_back_ios-white-18dp.svg": "/react-date-selector/static/media/arrow_back_ios-white-18dp.3999cba2.svg",
+    "static/media/arrow_forward_ios-white-18dp.svg": "/react-date-selector/static/media/arrow_forward_ios-white-18dp.2c033a9c.svg",
+    "static/media/double_arrow_back_ios-white-18dp.svg": "/react-date-selector/static/media/double_arrow_back_ios-white-18dp.1f4f4a42.svg",
+    "static/media/double_arrow_forward_ios-white-18dp.svg": "/react-date-selector/static/media/double_arrow_forward_ios-white-18dp.d023c646.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.82558083.js",
-    "static/js/2.3fc81135.chunk.js",
+    "static/js/2.99d2d756.chunk.js",
     "static/css/main.946824fd.chunk.css",
-    "static/js/main.9f310ecb.chunk.js"
+    "static/js/main.943aeadd.chunk.js"
   ]
 }
