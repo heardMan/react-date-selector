@@ -334,8 +334,8 @@ const DatePicker = props => {
 
                 <button className='leftBtn' onClick={stepDateBackward1Day}><img src={leftArrow} alt='icon of a left arrow' /></button>
 
-                <input type='text'
-                    aria-label='date'
+                <input type={'text'}
+                    aria-label={'date'}
                     value={props.date}
                     placeholder={'yyyy/mm/dd'}
                     onChange={handleChange}
