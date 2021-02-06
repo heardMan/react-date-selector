@@ -17,8 +17,8 @@
 import React, { useEffect, useState } from 'react';
 
 //Import some image files to use for icons.
-import rightArrow from '../icons/arrow_forward_ios-white-18dp.svg';
-import leftArrow from '../icons/arrow_back_ios-white-18dp.svg';
+import rightArrow from '../icons/arrow_forward_ios-white-18dp-2.svg';
+import leftArrow from '../icons/arrow_back_ios-white-18dp-2.svg';
 import rightDblArrow from '../icons/double_arrow_forward_ios-white-18dp.svg';
 import leftDblArrow from '../icons/double_arrow_back_ios-white-18dp.svg';
 

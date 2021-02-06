@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from './DatePicker.js';
+import DateRanger from './DateRanger.js';
 
 /**
  * The main purpose of this form is to showcase a potential use case for the react date picker
@@ -17,6 +18,8 @@ const Form = () => {
 
     const [startDate, setStartDate] = useState(formatDate(Date.now()));
     const [endDate, setEndDate] = useState(formatDate(Date.now()));
+    const [startDate2, setStartDate2] = useState(formatDate(Date.now()));
+    const [endDate2, setEndDate2] = useState(formatDate(Date.now()));
     const [displayModal, setDisplayModal] = useState(false);
     const [displayDateErrorModal, setDisplayDateErrorModal] = useState(false);
     const [name, setName] = useState('');
@@ -114,6 +117,17 @@ const Form = () => {
                     <DatePicker date={endDate} onChange={setEndDate} />
                 </div>
             </div>
+
+            {/* <div className='form-field'>
+                <div className='dateRange'>
+                    <div className='title'>Date Range</div>
+                    <DateRanger
+                        endDate={endDate2}
+                        startDate={startDate2}
+                        onEndDate2Change={setEndDate2}
+                        onStartDate2Change={setStartDate2} />
+                </div>
+            </div> */}
 
             <div className='form-field'>
                 <button className='btn' onClick={toggleModal}>Submit</button>
