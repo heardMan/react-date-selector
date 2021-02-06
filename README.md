@@ -6,7 +6,7 @@
 <li><a href='#about'>About</a></li>
 <li><a href='#road-map'>Road Map</a></li>
 <!-- <li><a href='style-guide'>Style Guide</a></li> -->
-<li><a href='set-up'>Set Up Instructions</a></li>
+<li><a href='#set-up'>Set Up Instructions</a></li>
 </ul>
 
 <h2 id='introduction'>Introduction</h2>
