@@ -14,6 +14,8 @@
 <p>Framework date selectors are finicky, complicated, and never work right!</p>
 <p>This React Date Selector is better!!!</p>
 
+<p>Check out the <a href='https://heardman.github.io/react-date-selector/'><strong>Live Demo Here</a></strong>!!!</p>
+
 <h2 id='about'>About</h2>
 <p>This project is a mobile-first date selector styled in a dark theme.</p>
 <p>The component was built using a mobile-first philosophy.</p>
