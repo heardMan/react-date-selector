@@ -6,11 +6,13 @@
  * @requires ReactJS - A library maintained by Facebook -- https://reactjs.org/
  * @component A component used to select dates.
  * 
- * @param {object} props - Properties and methods inherited from the parent component.
- * @property {string} props.date - Date information inherited from a higher level component.
- * @method props.onChange A method that updates the date variable in the parent when it is changed by the DatePicker
+ * @param {object} props - Properties and methods that are inherited from the parent component.
  * 
- * @returns {<DatePicker date={} onChange={}/ >} the JSX datepicker element to be rendered
+ * @property {string} props.date -  Date information inherited from a higher level component.
+ * 
+ * @method props.onChange -  A method that updates the date variable in the parent when it is changed by the DatePicker
+ * 
+ * @returns {<DatePicker date={} onChange={}/ >}  - the JSX datepicker element to be rendered
  */
 
 //Import react library with useEffect and useState hooks.
@@ -51,7 +53,6 @@ const DatePicker = props => {
 
     const [days, setDays] = useState([]);
 
-
     /**
      * @method dayNames a method that returns an array of day names
      * @returns {string[]} array containing the names of each day for matted as a string
@@ -61,7 +62,7 @@ const DatePicker = props => {
     const dayNames = () => {
         return (
             ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-                "Saturday", "Sunday"
+                "Saturday"
             ]
         );
     }
@@ -227,6 +228,8 @@ const DatePicker = props => {
 
         //create a new date reference from parent component's state
         const date = new Date(e.target.getAttribute("data"));
+        //close the calendar
+        toggleCalendar()
         //update the parent component's state with the new date formatted as a string using the 'props.onChange' method
         return props.onChange(formatDate(date));
 
@@ -321,7 +324,7 @@ const DatePicker = props => {
         <div className='datePicker'>
 
             {
-                //this is the HTML for the date selection control
+                //below is the HTML for the date selection control
                 //the controls are composed of two pairs of buttons
                 //one pair to step the date forward or backward by 
                 //one day or one year. between these two pairs of 
@@ -330,7 +333,7 @@ const DatePicker = props => {
             }
             <div className='daySelector'>
 
-                <button className='leftBtn2' onClick={stepDateBackward1Year}><img src={leftDblArrow} alt='icon of a double left arrow' /></button>
+                {/* <button className='leftBtn2' onClick={stepDateBackward1Year}><img src={leftDblArrow} alt='icon of a double left arrow' /></button> */}
 
                 <button className='leftBtn' onClick={stepDateBackward1Day}><img src={leftArrow} alt='icon of a left arrow' /></button>
 
@@ -344,7 +347,7 @@ const DatePicker = props => {
 
                 <button className='rightBtn' onClick={stepDateForward1Day}>{<img src={rightArrow} alt='icon of a right arrow' />}</button>
                 
-                <button className='rightBtn2' onClick={stepDateForward1Year}><img src={rightDblArrow} alt='icon of a boudle right arrow' /></button>
+                {/* <button className='rightBtn2' onClick={stepDateForward1Year}><img src={rightDblArrow} alt='icon of a boudle right arrow' /></button> */}
 
             </div>
 
@@ -354,38 +357,38 @@ const DatePicker = props => {
                     <div className='calendar'>
 
                         {
-                            //this is the HTML for the month selection controls
+                            //below is the HTML for the month selection controls
                             //the controls are composed of two buttons that are 
-                            //used to step the date backwards and forwards by one
-                            //month. between the buttons a <span> element that 
-                            //evaluates props.date for the month of the date stored
-                            //and renders that month as the title using the 
-                            //monthNames array
+                            //used to step the date backwards and forwards by 
+                            //one month. between the buttons a <span> element
+                            //that evaluates props.date for the month of the 
+                            //date stored and renders that month as the title 
+                            //using the monthNames array
                         }
                         <div className='monthSelector'>
 
+                            <button className='leftBtn2' onClick={stepDateBackward1Year}><img src={leftDblArrow} alt='icon of a double left arrow' /></button>
                             <button className='leftBtn' onClick={stepDateBackward1Month}><img src={leftArrow} alt='icon of a left arrow' /></button>
                             
                             <span>{monthNames()[(new Date(props.date).getMonth())]}</span>
                             
                             <button className='rightBtn' onClick={stepDateForward1Month}><img src={rightArrow} alt='icon of a right arrow' /></button>
+                            <button className='rightBtn2' onClick={stepDateForward1Year}><img src={rightDblArrow} alt='icon of a boudle right arrow' /></button>
 
                         </div>
 
                         <div className='month'>
 
                             {
-                                //the following HTML creates the header columns 
-                                //for the day grid in the calendar element
-                                //there is one element for each day of thte week
+                                //the following script iterates through the dayNames array
+                                //for each day it returns an HTML element that creates
+                                //the header columns for each day of the week
+                                //resulting in the conventional calendar view
                             }
-                            <div className='dayTitle'>S</div>
-                            <div className='dayTitle'>M</div>
-                            <div className='dayTitle'>T</div>
-                            <div className='dayTitle'>W</div>
-                            <div className='dayTitle'>T</div>
-                            <div className='dayTitle'>F</div>
-                            <div className='dayTitle'>S</div>
+                            {dayNames().map((day,i)=>{
+                                console.log(day);
+                                return(<div key={i} className='dayTitle'>{day[0].toUpperCase()}</div>)
+                            })}
 
                             {//iterate through the days array and render each day in the
                                 days.map((day, i) => {
