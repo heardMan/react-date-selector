@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "92f94376c771a9b0ed76987b3f260cfa",
+    "revision": "b619f21cfe92d538ab90bc770afdf014",
     "url": "/react-date-selector/index.html"
   },
   {
-    "revision": "198442ad8c5b92883b3f",
-    "url": "/react-date-selector/static/css/main.6a633ad9.chunk.css"
+    "revision": "760c5c7e6cf4fd6030be",
+    "url": "/react-date-selector/static/css/main.2ba7b0f8.chunk.css"
   },
   {
     "revision": "6e10d8999c94776182b5",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-date-selector/static/js/2.dede2686.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "198442ad8c5b92883b3f",
+    "revision": "760c5c7e6cf4fd6030be",
     "url": "/react-date-selector/static/js/main.fd6c1fbd.chunk.js"
   },
   {
