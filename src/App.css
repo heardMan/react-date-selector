@@ -156,7 +156,7 @@ body {
   border-top: solid #dadfe1 1px;
 }
 
-.monthSelector { 
+.monthSelector, .yearSelector { 
   text-align: center;
   /* margin: 0.5rem 0rem 0.5rem 0rem; */
   padding:0.5rem 0rem 0.5rem 0rem;
@@ -167,12 +167,12 @@ body {
 
 }
 
-.monthSelector > span {
+.monthSelector > span, .yearSelector > span {
   margin: 0rem 1rem 0rem 1rem;
   font-size:1.5rem;
 }
 
-.monthSelector > button {
+.monthSelector > button, .yearSelector > button {
   border: none;
   background-color:transparent;
   min-width: 40px;
@@ -214,6 +214,18 @@ body {
   margin-left:auto;
 }
 
+.monthTile {
+  text-align: center;
+  width: 150px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 5%;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2.25;
+}
+
 .day, .dayTitle{ 
   text-align: center;
   width: 40px;
@@ -226,7 +238,7 @@ body {
   font-weight: bold;
 }
 
-.selectedDay { 
+.selectedDay, .selectedMonth { 
   background-color: #2574a9;
   color: #dadfe1;
 }
