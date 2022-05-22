@@ -308,7 +308,7 @@ const DatePicker = props => {
                             return (<div key={i} className='dayTitle'>{day[0].toUpperCase()}</div>)
                         })}
 
-                        {//iterate through the days array and render each day in the
+                        {//iterate through the days array and render each day in the calendar
                             days.map((day, i) => {
 
                                 //create a new date object for the selected day
@@ -362,32 +362,30 @@ const DatePicker = props => {
                     <div className='months'>
 
                         {
-                            //the following script iterates through the dayNames array
-                            //for each day it returns an HTML element that creates
+                            //the following script iterates through the monthNames array
+                            //for each month it returns an HTML element that creates
                             //the header columns for each day of the week
-                            //resulting in the conventional calendar view
                         }
 
-                        {//iterate through the days array and render each day in the
+                        {//iterate through the months names array and render each month in the calendar
                             monthNames().map((month, i) => {
 
                                 //create a new date object for the selected day
                                 const selectedDay = new Date(props.date);
+                                //get the index of the month in the monthNames array
                                 const selectedMonth = monthNames()[selectedDay.getMonth()];
-
-                                console.log(month)
 
                                 //if the current day in the loop is equal to the selected date stored in props.date
                                 if ((month) === (selectedMonth)) {
 
-                                    //return an HTML element with all the day's information
-                                    //with the class 'selectedDay' to change it background 
+                                    //return an HTML element with all the month's information
+                                    //with the class 'selectedMonth' to change it background 
                                     //color and denote that this is the currently selected date
                                     return (<div key={i} className='selectedMonth monthTile' data={month} onClick={() => { updateMonth(month) }}>{selectedMonth}</div>)
 
                                 }
 
-                                //return an HTML element with all the day's information
+                                //return an HTML element with all the month's information
                                 return (<div key={i} className='monthTile' data={month} onClick={() => { updateMonth(month) }}>{month}</div>)
 
                             })}
