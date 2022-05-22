@@ -1,26 +1,17 @@
 {
-  "files": {
-    "main.css": "/react-date-selector/static/css/main.4f257961.chunk.css",
-    "main.js": "/react-date-selector/static/js/main.2528b36b.chunk.js",
-    "main.js.map": "/react-date-selector/static/js/main.2528b36b.chunk.js.map",
-    "runtime-main.js": "/react-date-selector/static/js/runtime-main.82558083.js",
-    "runtime-main.js.map": "/react-date-selector/static/js/runtime-main.82558083.js.map",
-    "static/js/2.cfcfce80.chunk.js": "/react-date-selector/static/js/2.cfcfce80.chunk.js",
-    "static/js/2.cfcfce80.chunk.js.map": "/react-date-selector/static/js/2.cfcfce80.chunk.js.map",
-    "index.html": "/react-date-selector/index.html",
-    "precache-manifest.0860db997b2b9fee50a0a5c65fbe8c2a.js": "/react-date-selector/precache-manifest.0860db997b2b9fee50a0a5c65fbe8c2a.js",
-    "service-worker.js": "/react-date-selector/service-worker.js",
-    "static/css/main.4f257961.chunk.css.map": "/react-date-selector/static/css/main.4f257961.chunk.css.map",
-    "static/js/2.cfcfce80.chunk.js.LICENSE.txt": "/react-date-selector/static/js/2.cfcfce80.chunk.js.LICENSE.txt",
-    "static/media/arrow_back_ios-white-18dp-2.svg": "/react-date-selector/static/media/arrow_back_ios-white-18dp-2.ac543f0d.svg",
-    "static/media/arrow_forward_ios-white-18dp-2.svg": "/react-date-selector/static/media/arrow_forward_ios-white-18dp-2.2f97d706.svg",
-    "static/media/double_arrow_back_ios-white-18dp.svg": "/react-date-selector/static/media/double_arrow_back_ios-white-18dp.1f4f4a42.svg",
-    "static/media/double_arrow_forward_ios-white-18dp.svg": "/react-date-selector/static/media/double_arrow_forward_ios-white-18dp.d023c646.svg"
-  },
-  "entrypoints": [
-    "static/js/runtime-main.82558083.js",
-    "static/js/2.cfcfce80.chunk.js",
-    "static/css/main.4f257961.chunk.css",
-    "static/js/main.2528b36b.chunk.js"
-  ]
+  "main.css": "/react-date-selector/static/css/main.572e9c5b.chunk.css",
+  "main.js": "/react-date-selector/static/js/main.8c7062c7.chunk.js",
+  "main.js.map": "/react-date-selector/static/js/main.8c7062c7.chunk.js.map",
+  "static/js/1.8357abb2.chunk.js": "/react-date-selector/static/js/1.8357abb2.chunk.js",
+  "static/js/1.8357abb2.chunk.js.map": "/react-date-selector/static/js/1.8357abb2.chunk.js.map",
+  "runtime~main.js": "/react-date-selector/static/js/runtime~main.aa55e37d.js",
+  "runtime~main.js.map": "/react-date-selector/static/js/runtime~main.aa55e37d.js.map",
+  "static/media/arrow_forward_ios-white-18dp-2.svg": "/react-date-selector/static/media/arrow_forward_ios-white-18dp-2.2f97d706.svg",
+  "static/media/arrow_back_ios-white-18dp-2.svg": "/react-date-selector/static/media/arrow_back_ios-white-18dp-2.ac543f0d.svg",
+  "static/media/double_arrow_forward_ios-white-18dp.svg": "/react-date-selector/static/media/double_arrow_forward_ios-white-18dp.d023c646.svg",
+  "static/media/double_arrow_back_ios-white-18dp.svg": "/react-date-selector/static/media/double_arrow_back_ios-white-18dp.1f4f4a42.svg",
+  "static/css/main.572e9c5b.chunk.css.map": "/react-date-selector/static/css/main.572e9c5b.chunk.css.map",
+  "index.html": "/react-date-selector/index.html",
+  "precache-manifest.aed075e37ed6785842eecb7646bcb591.js": "/react-date-selector/precache-manifest.aed075e37ed6785842eecb7646bcb591.js",
+  "service-worker.js": "/react-date-selector/service-worker.js"
 }
