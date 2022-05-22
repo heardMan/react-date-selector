@@ -41,7 +41,7 @@ const DatePicker = props => {
 
 
     /**
-     * @constant calendarMode array of date objects to be rendered to the calendar element possible modes are: days, months, and years
+     * @constant calendarMode array of date objects to be rendered to the calendar element possible modes are: days and months
      * @type {string}
      * @default 'days'
      */
@@ -51,7 +51,7 @@ const DatePicker = props => {
      * @returns the state change handler for the calendarMode state variable
      */
 
-     const [calendarMode, setCalendarMode] = useState('days');
+    const [calendarMode, setCalendarMode] = useState('days');
 
     /**
      * @constant days array of date objects to be rendered to the calendar element
@@ -214,29 +214,43 @@ const DatePicker = props => {
     }
 
     /**
-     * @method updateMonth updates only the month of the selected date
-     * @returns an updated date with the newly selected month
+     * @method updateMonth - accpets a selected month as a string then updates props.date with a new date that has the selected month
+     * @param {string} selectedMonth - month name are supplied by the monthNames method 
+     * @returns {method} - props.change is invoked and supplied with a consistently formatted date
      */
 
     const updateMonth = selectedMonth => {
-        const day = new Date(props.date).getDate()
-        const month = new Date(props.date).getMonth()
-        const year = new Date(props.date).getFullYear()
-        const newMonth = monthNames().indexOf(selectedMonth)
 
+        //create a new date reference from parent component's state
         const newDate = new Date(props.date)
+        //convert selected month to an ordinal number
+        const newMonth = monthNames().indexOf(selectedMonth)
+        //change the month on the new date
         newDate.setMonth(newMonth)
-
-        console.log(props.date)
-        console.log(newDate)
-        console.log(newDate.getDate())
-        console.log(newDate.getMonth())
-        console.log(newDate.getFullYear())
-
+        //change the calendar mode
         setCalendarMode('days')
-
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
         return props.onChange(formatDate(newDate));
     }
+
+    /**
+     * @method updateYear - accpets a selected month as a string then updates props.date with a new date that has the selected month
+     * @param {string} selectedMonth - month name are supplied by the monthNames method 
+     * @returns {method} - props.change is invoked and supplied with a consistently formatted date
+     */
+
+     const updateYear = selectedYear => {
+
+        //create a new date reference from parent component's state
+        const newDate = new Date(props.date)
+        //change the month on the new date
+        newDate.setFullYear(selectedYear)
+        //update the parent component's state with the new date formatted as a string using the props.onChange method
+        return props.onChange(formatDate(newDate));
+
+    }
+
+
 
     /**
      * @method toggleCalendar toggles the calendar's display status between true and false
@@ -262,119 +276,124 @@ const DatePicker = props => {
      */
 
     const modeRenderer = () => {
-        if(calendarMode === 'days'){
-            return(
+        if (calendarMode === 'days') {
+            return (
                 <>
-                <div className='monthSelector' >
+                    <div className='monthSelector' >
 
-                            <button className='leftBtn' onClick={stepDateBackward1Month}><img src={leftArrow} alt='icon of a left arrow' /></button>
+                        <button className='leftBtn' onClick={stepDateBackward1Month}><img src={leftArrow} alt='icon of a left arrow' /></button>
 
-                            <span
-                                id='monthName'
-                                onClick={()=>{setCalendarMode('months')}}
-                            >
-                                {monthNames()[(new Date(props.date).getMonth())]}
-                            </span>
+                        <span
+                            id='monthName'
+                            onClick={() => { setCalendarMode('months') }}
+                        >
+                            {monthNames()[(new Date(props.date).getMonth())]}
+                        </span>
 
-                            <button className='rightBtn' onClick={stepDateForward1Month}><img src={rightArrow} alt='icon of a right arrow' /></button>
-                            
-                        </div>
+                        <button className='rightBtn' onClick={stepDateForward1Month}><img src={rightArrow} alt='icon of a right arrow' /></button>
 
-                        <div className='month'>
+                    </div>
 
-                            {
-                                //the following script iterates through the dayNames array
-                                //for each day it returns an HTML element that creates
-                                //the header columns for each day of the week
-                                //resulting in the conventional calendar view
-                            }
-                            
-                            {dayNames().map((day, i) => {
-                                console.log(day);
-                                return (<div key={i} className='dayTitle'>{day[0].toUpperCase()}</div>)
+                    <div className='month'>
+
+                        {
+                            //the following script iterates through the dayNames array
+                            //for each day it returns an HTML element that creates
+                            //the header columns for each day of the week
+                            //resulting in the conventional calendar view
+                        }
+
+                        {dayNames().map((day, i) => {
+                            console.log(day);
+                            return (<div key={i} className='dayTitle'>{day[0].toUpperCase()}</div>)
+                        })}
+
+                        {//iterate through the days array and render each day in the
+                            days.map((day, i) => {
+
+                                //create a new date object for the selected day
+                                const selectedDay = new Date(props.date);
+
+                                //if the current day in the loop is equal to the selected date stored in props.date
+                                if (formatDate(day) === formatDate(selectedDay)) {
+
+                                    //return an HTML element with all the day's information
+                                    //with the class 'selectedDay' to change it background 
+                                    //color and denote that this is the currently selected date
+                                    return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
+                                }
+
+                                //return an HTML element with all the day's information
+                                return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
+
                             })}
 
-                            {//iterate through the days array and render each day in the
-                                days.map((day, i) => {
-
-                                    //create a new date object for the selected day
-                                    const selectedDay = new Date(props.date);
-
-                                    //if the current day in the loop is equal to the selected date stored in props.date
-                                    if (formatDate(day) === formatDate(selectedDay)) {
-
-                                        //return an HTML element with all the day's information
-                                        //with the class 'selectedDay' to change it background 
-                                        //color and denote that this is the currently selected date
-                                        return (<div key={i} className='selectedDay day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
-                                    }
-
-                                    //return an HTML element with all the day's information
-                                    return (<div key={i} className='day' data={day} onClick={selectDateFromCalendar}>{day.getDate()}</div>)
-
-                                })}
-
-                        </div>
-                        </>
+                    </div>
+                </>
             )
-        } else if (calendarMode === 'months'){
-            return(
+        } else if (calendarMode === 'months') {
+            return (
                 <>
-                <div className='yearSelector' >
-                            
-                            <button className='leftBtn' onClick={stepDateBackward1Year}><img src={leftArrow} alt='icon of a left arrow' /></button>
+                    <div className='yearSelector' >
 
-                            <span
-                                id='selectedYear'
-                                onClick={()=>{setCalendarMode('years')}}
-                            >
-                                {[(new Date(props.date).getFullYear())]}
-                            </span>
+                        <button className='leftBtn' onClick={stepDateBackward1Year}><img src={leftArrow} alt='icon of a left arrow' /></button>
 
-                            <button className='rightBtn' onClick={stepDateForward1Year}><img src={rightArrow} alt='icon of a right arrow' /></button>
+                        <span id='selectedYear'>
 
-                        </div>
+                            {[(new Date(props.date).getFullYear())]}
 
-                        <div className='months'>
+                            {/* <input type={'number'}
 
-                            {
-                                //the following script iterates through the dayNames array
-                                //for each day it returns an HTML element that creates
-                                //the header columns for each day of the week
-                                //resulting in the conventional calendar view
-                            }
+                                aria-label={'date'}
+                                value={[(new Date(props.date).getFullYear())]}
+                                placeholder={[(new Date(props.date).getFullYear())]}
+                                onChange={e=>{updateYear(e.target.value)}}
+                                autocomplete="off"
+                                data-form-type="other"
+                            /> */}
 
-                            {//iterate through the days array and render each day in the
-                                monthNames().map((month, i) => {
+                        </span>
 
-                                    //create a new date object for the selected day
-                                    const selectedDay = new Date(props.date);
-                                    const selectedMonth = monthNames()[selectedDay.getMonth()];
+                        <button className='rightBtn' onClick={stepDateForward1Year}><img src={rightArrow} alt='icon of a right arrow' /></button>
 
-                                    console.log(month)
+                    </div>
 
-                                    //if the current day in the loop is equal to the selected date stored in props.date
-                                    if ((month) === (selectedMonth)) {
+                    <div className='months'>
 
-                                        //return an HTML element with all the day's information
-                                        //with the class 'selectedDay' to change it background 
-                                        //color and denote that this is the currently selected date
-                                        return (<div key={i} className='selectedMonth monthTile' data={month} onClick={()=>{updateMonth(month)}}>{selectedMonth}</div>)
+                        {
+                            //the following script iterates through the dayNames array
+                            //for each day it returns an HTML element that creates
+                            //the header columns for each day of the week
+                            //resulting in the conventional calendar view
+                        }
 
-                                    }
+                        {//iterate through the days array and render each day in the
+                            monthNames().map((month, i) => {
+
+                                //create a new date object for the selected day
+                                const selectedDay = new Date(props.date);
+                                const selectedMonth = monthNames()[selectedDay.getMonth()];
+
+                                console.log(month)
+
+                                //if the current day in the loop is equal to the selected date stored in props.date
+                                if ((month) === (selectedMonth)) {
 
                                     //return an HTML element with all the day's information
-                                    return (<div key={i} className='monthTile' data={month} onClick={()=>{updateMonth(month)}}>{month}</div>)
+                                    //with the class 'selectedDay' to change it background 
+                                    //color and denote that this is the currently selected date
+                                    return (<div key={i} className='selectedMonth monthTile' data={month} onClick={() => { updateMonth(month) }}>{selectedMonth}</div>)
 
-                                })}
+                                }
 
-                        </div>
-                        </>
-            )
-        } else if (calendarMode === 'years'){
-            return(
-                <div>Years</div>
+                                //return an HTML element with all the day's information
+                                return (<div key={i} className='monthTile' data={month} onClick={() => { updateMonth(month) }}>{month}</div>)
+
+                            })}
+
+                    </div>
+                </>
             )
         }
     }
@@ -529,7 +548,7 @@ const DatePicker = props => {
                             //using the monthNames array
                         }
                         {modeRenderer()}
-                        
+
 
                     </div>
                     //if displayCalendar is false return null and do not render an additional HTML related to the calendar
