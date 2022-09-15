@@ -10,9 +10,9 @@
 </ul>
 
 <h2 id='introduction'>Introduction</h2>
-<p>Default date pickers are boring and atrocious.</p>
-<p>Framework date selectors are finicky, complicated, and never work right!</p>
-<p>This React Date Selector is better!!!</p>
+<p>Default date pickers are boring and tiny.</p>
+<p>Framework date selectors are finicky, complicated, and never work right...</p>
+<p>This React Date Selector is better!</p>
 
 <p>Check out the <a href='https://heardman.github.io/react-date-selector/'><strong>Live Demo Here</a></strong>!!!</p>
 
@@ -26,7 +26,6 @@
 <h2 id='road-map'>Road Map</h2>
 
 <ul>
-  <li>Increase Tap Target Size to improve SEO</li>
   <li>Improve Acccessibility</li>
   <li>Improve Unit Testing</li>
   <li>User Friendly Error Handling</li>

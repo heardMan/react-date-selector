@@ -6,21 +6,24 @@
  * @requires ReactJS - A library maintained by Facebook -- https://reactjs.org/
  * @component A component used to select dates.
  * 
- * @param {object} props - Properties and methods that are inherited from the parent component.
+ * @param {object} props - Properties and methods that are inherited from the parent component
  * 
- * @property {string} props.date -  Date information inherited from a higher level component.
+ * This component is currently designed to accept (2) inputs: a date 'props.date' and a state handler 'props.onChange'
  * 
- * @method props.onChange -  A method that updates the date variable in the parent when it is changed by the DatePicker
+ * @property {string} props.date -  Date information inherited from a higher level component
  * 
- * @returns {<DatePicker date={} onChange={}/ >}  - the JSX datepicker element to be rendered
+ * @method props.onChange - State handler function inherited from a higher level component
+ * 
+ * @returns {<DatePicker date={} onChange={}/ >}  - The JSX datepicker element to be rendered
  */
 
-//Import react library with useEffect and useState hooks.
+//Import react library with useEffect and useState hooks
 import React, { useEffect, useState } from 'react';
+import './DatePicker.css'
 
-//Import some image files to use for icons.
-import rightArrow from '../icons/arrow_forward_ios-white-18dp-2.svg';
-import leftArrow from '../icons/arrow_back_ios-white-18dp-2.svg';
+//Import some image files to use for icons
+import rightArrow from '../../icons/arrow_forward_ios-white-18dp-2.svg';
+import leftArrow from '../../icons/arrow_back_ios-white-18dp-2.svg';
 
 
 const DatePicker = props => {
@@ -33,30 +36,28 @@ const DatePicker = props => {
 
     /**
      * @method setDisplayCalendar
-     * @returns the state change handler for the displayCalendar state variable
+     * @returns the state change handler for the @displayCalendar
      */
 
     const [displayCalendar, setDisplayCalendar] = useState(false);
 
-
-
     /**
-     * @constant calendarMode array of date objects to be rendered to the calendar element possible modes are: days and months
+     * @constant calendarMode records the calendar's current input mode possible modes are: days and months
      * @type {string}
      * @default 'days'
      */
 
     /**
      * @method setCalendarMode
-     * @returns the state change handler for the calendarMode state variable
+     * @returns the state change handler for the @calendarMode state variable
      */
 
     const [calendarMode, setCalendarMode] = useState('days');
 
     /**
-     * @constant days array of date objects to be rendered to the calendar element
-     * @type {date}
-     * @default date[]
+     * @constant days state array for containing date objects to be rendered to the calendar element
+     * @type {Array}
+     * @default [currentMonth...] an array of date objects for the current month at the time of evaluation
      */
 
     /**
@@ -93,9 +94,6 @@ const DatePicker = props => {
             ]
         );
     }
-
-
-
 
     /**
      * @method formatDate method used to centralize date formatting
@@ -199,16 +197,16 @@ const DatePicker = props => {
 
     /**
      * @method stepDateBackward1Year steps 'props.date' backward one year
-     * @returns the 'props.onChange' method with the new date formatted as a string
+     * @returns {function} props.onChange is supplied with the new date
      */
 
     const stepDateBackward1Year = () => {
 
-        //create a new date reference from parent component's state
+        //create date reference from inherited state
         const date = new Date(props.date);
         //create a date reference for the new date
         const newDate = new Date(date.setFullYear(date.getFullYear() - 1));
-        //update the parent component's state with the new date formatted as a string using the props.onChange method
+        //update the parent component's state with the new date
         return props.onChange(formatDate(newDate));
 
     }
@@ -239,7 +237,7 @@ const DatePicker = props => {
      * @returns {method} - props.change is invoked and supplied with a consistently formatted date
      */
 
-     const updateYear = selectedYear => {
+    const updateYear = selectedYear => {
 
         //create a new date reference from parent component's state
         const newDate = new Date(props.date)
@@ -249,8 +247,6 @@ const DatePicker = props => {
         return props.onChange(formatDate(newDate));
 
     }
-
-
 
     /**
      * @method toggleCalendar toggles the calendar's display status between true and false
@@ -521,7 +517,7 @@ const DatePicker = props => {
                     placeholder={'yyyy/mm/dd'}
                     onChange={handleChange}
                     onClick={toggleCalendar}
-                    autocomplete="off"
+                    autoComplete="off"
                     data-form-type="other"
                 />
 
@@ -553,7 +549,6 @@ const DatePicker = props => {
                 ) : (
                     null
                 )}
-
 
         </div>
 

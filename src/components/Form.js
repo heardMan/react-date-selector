@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import DatePicker from './DatePicker.js';
-import DatePicker2 from './DatePicker2';
+
+import DatePicker from './DatePicker/DatePicker.js';
 import DateRanger from './DateRanger.js';
 
 /**
@@ -108,14 +108,14 @@ const Form = () => {
             <div className='form-field'>
                 <div className='startDate'>
                     <div className='title'>Start Date</div>
-                    <DatePicker2 date={startDate} onChange={setStartDate} />
+                    <DatePicker date={startDate} onChange={setStartDate} />
                 </div>
             </div>
 
             <div className='form-field'>
                 <div className='endDate'>
                     <div className='title'>End Date</div>
-                    <DatePicker2 date={endDate} onChange={setEndDate} />
+                    <DatePicker date={endDate} onChange={setEndDate} />
                 </div>
             </div>
 
