@@ -1,6 +1,15 @@
+/* TODO: abstract all border, color, sizing, and spacing parameters to Comonent Level Controls
+borders: none, solid, etc (standard css border types)
+borderColor: any css color code 
+borderWidth: any css size increment
+color: any css color code 
+size: any css size increment - this wil affect the size of the entire component
+padding: padding controls that maintain the components structure
+margin: margin controls that maintain the components structure
+*/
+
 .datePicker {
     min-width:280px;
-    /* max-width:280px; */
     border-radius: 10px;
     margin-left:auto;
     margin-right:auto;

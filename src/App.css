@@ -82,14 +82,16 @@ body {
   border: solid #dadfe1 1px;
   border-radius: 10px;
   margin-top:2.5rem;
+  padding-top:1rem;
   
 }
 
-.startDate, .endDate > div:first-child {
-  padding-top:1rem;
-}
-
+/* TODO: create component level control for this */
 .startDate .datePicker .daySelector > input {
+  color: #dadfe1;
+}
+/* TODO: create component level control for this */
+.end .datePicker .daySelector > input {
   color: #dadfe1;
 }
 
